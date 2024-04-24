@@ -1,0 +1,11 @@
+# Ignore .history folder, as I have a plugin for history
+.history/
+
+# Ignore tcs_tmp folder, the folder for TS to work with JS files
+tcs_tmp/
+
+# Ignore dependency directories
+node_modules/
+
+# To make Git simpler
+package-lock.json

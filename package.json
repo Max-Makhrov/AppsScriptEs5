@@ -1,0 +1,20 @@
+{
+  "name": "ranger",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c && powershell -Command \"(Get-Content -Path .\\\\Dist\\\\Code.js | Select-Object -SkipLast 2) -replace '/\\*\\* @typedef {import\\(\".+\"\\)\\..+ \\*/' | Out-File -FilePath .\\\\Dist\\\\Code.js -Encoding utf8\" && clasp push",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-alias": "^5.1.0",
+    "rollup": "^4.13.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.4.3",
+    "vitest": "^1.4.0"
+  }
+}

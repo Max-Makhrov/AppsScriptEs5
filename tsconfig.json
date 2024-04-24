@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "ES2015",
+    "outDir": "./tsc_tmp",
+    "allowJs": true,
+    "checkJs": true,
+    "moduleResolution": "node"
+  },
+  "include": [
+    "src",
+    "test"
+  ],
+  "exclude": [
+    "dist"
+  ],
+}
