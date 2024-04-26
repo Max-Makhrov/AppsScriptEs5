@@ -1,8 +1,9 @@
-import { getGridA1Measures_ } from "../src/validators/grid_measure";
+import { getGridA1Measures_ } from "@/rangers/validators/grid_measure";
 import { expect, test } from "vitest";
-
-/** @typedef {import("../src/validators/grid_measure").RangeGridMeasure} RangeGridMeasure */
-/** @typedef {import("../src/grid").RangeGrid} RangeGrid */
+// @ts-ignore
+/** @typedef {import("@/rangers/validators/grid_measure").RangeGridMeasure} RangeGridMeasure */
+// @ts-ignore
+/** @typedef {import("@/rangers/grid").RangeGrid} RangeGrid */
 
 /**
  * @typedef {Object} TestCase

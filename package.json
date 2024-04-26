@@ -4,7 +4,9 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "build": "rollup -c && powershell -Command \"(Get-Content -Path .\\\\Dist\\\\Code.js | Select-Object -SkipLast 2) -replace '/\\*\\* @typedef {import\\(\".+\"\\)\\..+ \\*/' | Out-File -FilePath .\\\\Dist\\\\Code.js -Encoding utf8\" && clasp push",
+    "build": "npm run renameToTs && rollup --config --bundleConfigAsCjs && powershell -Command \"(Get-Content -Path .\\\\Dist\\\\Code.js | Select-Object -SkipLast 2) -replace '/\\*\\* @typedef {import\\(\".+\"\\)\\..+ \\*/' | Out-File -FilePath .\\\\Dist\\\\Code.js -Encoding utf8\" && clasp push && npm run renameToJs",
+    "renameToTs": "node scripts/rename.cjs .js .ts",
+    "renameToJs": "node scripts/rename.cjs .ts .js",
     "test": "vitest"
   },
   "keywords": [],

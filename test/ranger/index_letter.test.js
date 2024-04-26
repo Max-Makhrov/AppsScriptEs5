@@ -1,4 +1,4 @@
-import { columnIndexToLetters_ } from "../src/converters/index_letter";
+import { columnIndexToLetters_ } from "@/rangers/converters/index_letter";
 import { expect, test } from "vitest";
 
 /**

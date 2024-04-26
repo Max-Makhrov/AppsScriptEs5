@@ -1,5 +1,5 @@
-import { getValidatedRangeA1GridByRanger_ } from "./grid";
-import { RangeValidator_ } from "./validator";
+import { getValidatedRangeA1GridByRanger_ } from "./rangers/grid";
+import { RangeValidator_ } from "./rangers/validator";
 
 /** @typedef {import("./grid").RangeGrid} RangeGrid */
 /** @typedef {import("./validator").RangeValidationResults} RangeValidationResults */

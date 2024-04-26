@@ -1,4 +1,4 @@
-import { validateRangeA1Notation_ } from "../src/validators/validate_a1";
+import { validateRangeA1Notation_ } from "@/rangers/validators/validate_a1";
 import { expect, test } from "vitest";
 
 const validRanges = [

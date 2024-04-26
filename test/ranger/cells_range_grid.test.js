@@ -1,8 +1,8 @@
-import { cellGridsToRangeGrid_ } from "../src/converters/cells_range_grid";
-import { cellA1NotationToCellGrid_ } from "../src/converters/cell_grid";
+import { cellGridsToRangeGrid_ } from "@/rangers/converters/cells_range_grid";
+import { cellA1NotationToCellGrid_ } from "@/rangers/converters/cell_grid";
 import { expect, test } from "vitest";
-
-/** @typedef {import("../src/grid").RangeGrid} RangeGrid */
+// @ts-ignore
+/** @typedef {import("@/rangers/grid").RangeGrid} RangeGrid */
 
 /**
  * @typedef {Object} TestCase

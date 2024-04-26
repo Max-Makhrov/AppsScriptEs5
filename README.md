@@ -15,3 +15,30 @@ function test_ranger() {
   }
 }
 ```
+
+Will log this:
+
+```
+{
+  "startColumnIndex": 0,
+  "startRowIndex": 0,
+  "endColumnIndex": 2,
+  "endRowIndex": 25
+}
+```
+
+Use typer:
+
+```javascript
+    var typer = new Typer_("true");
+    console.log(JSON.stringify(typer.getType(), null, 2));
+```
+
+Will log this:
+
+```
+{
+  "type": "string",
+  "string_like_type": "boolean"
+}
+```

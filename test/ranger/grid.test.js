@@ -1,8 +1,9 @@
-import { getValidatedRangeA1GridByRanger_ } from "../src/grid";
-import { RangeValidator_ } from "../src/validator";
+import { getValidatedRangeA1GridByRanger_ } from "@/rangers/grid";
+import { RangeValidator_ } from "@/rangers/validator";
 import { expect, test } from "vitest";
 
-/** @typedef {import("../src/grid").RangeGrid} RangeGrid */
+// @ts-ignore
+/** @typedef {import("@/rangers/grid").RangeGrid} RangeGrid */
 
 /**
  * @typedef {Object} TestCase

@@ -5,7 +5,11 @@
     "outDir": "./tsc_tmp",
     "allowJs": true,
     "checkJs": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    }
   },
   "include": [
     "src",
@@ -13,5 +17,5 @@
   ],
   "exclude": [
     "dist"
-  ],
+  ]
 }

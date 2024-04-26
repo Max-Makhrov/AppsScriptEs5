@@ -584,6 +584,262 @@ function Ranger_(rangeA1) {
     };
 }
 
+/******************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise, SuppressedError, Symbol */
+
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
+    var e = new Error(message);
+    return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
+};
+
+/** @typedef {'int' | 'number'} BasicNumberType */
+/**
+ * @typedef {Object} BasicNumberTypeResponse
+ * @prop {BasicNumberType} type
+ * @prop {number} precision - The total number of digits (for numeric types).
+ * @prop {number} scale - The number of digits after the decimal point (for numeric types).
+ */
+/**
+ *
+ * @param {Number} number
+ * @returns {BasicNumberTypeResponse}
+ */
+function getBasicNumberType_(number) {
+    var absoluteNumber = Math.abs(number);
+    if (Math.round(number) - number === 0) {
+        return {
+            type: "int",
+            precision: Math.round(absoluteNumber).toString().length,
+            scale: 0,
+        };
+    }
+    var numberString = absoluteNumber.toString();
+    var splitNumber = numberString.split(".");
+    return {
+        type: "number",
+        precision: numberString.replace(".", "").length,
+        scale: splitNumber.length > 1 ? splitNumber[1].length : 0,
+    };
+}
+
+/** @typedef {'date' | 'datetime'} BasicDateType */
+/**
+ * @typedef {Object} BasicDateTypeResponse
+ * @prop {BasicDateType} type
+ */
+/**
+ *
+ * @param {Date} date
+ * @returns {BasicDateTypeResponse}
+ */
+function getDateBasicType_(date) {
+    if (date.getHours() !== 0 ||
+        date.getMinutes() !== 0 ||
+        date.getSeconds() !== 0) {
+        return { type: "datetime" };
+    }
+    return { type: "date" };
+}
+
+/**
+ * @typedef {'int' | 'number'} BasicDataType
+ */
+/**
+ * @typedef {Object} ScaleAndPrecision
+ * @prop {BasicDataType} string_like_type
+ * @prop {Number} precision
+ * @prop {Number} scale
+ */
+/**
+ *
+ * @param {String} value
+ * @returns {ScaleAndPrecision}
+ */
+function textAsNumber2Type_(value) {
+    // remove negative sign, if any, for count
+    var numberValue = value.charAt(0) === "-" ? value.substring(1) : value;
+    var dotIndex = numberValue.indexOf(".");
+    var precision = numberValue.length;
+    var scale = 0;
+    /** @type {BasicDataType} */
+    var type = "number";
+    if (dotIndex !== -1) {
+        var absValueStr = numberValue.replace(/0+$/, ""); // remove trailing zeros
+        if (/\.$/.test(absValueStr))
+            type = "int";
+        precision = absValueStr.replace(".", "").length; // recount precision after removal of zeros
+        scale = absValueStr.length - dotIndex - 1; // recount scale after removal of zeros
+    }
+    else {
+        type = "int";
+    }
+    return {
+        precision: precision,
+        scale: scale,
+        string_like_type: type,
+    };
+}
+
+
+/**
+ * @typedef {Object} StringValueTypeResponse
+ * @prop {BasicDataType} string_like_type
+ * @prop {number} [size] - The size or length (for string types).
+ * @prop {number} [precision] - The total number of digits (for numeric types).
+ * @prop {number} [scale] - The number of digits after the decimal point (for numeric types).
+ */
+/**
+ *
+ * @param {String} value
+ * @returns {StringValueTypeResponse}
+ */
+function getStringLikeType_(value) {
+    if (value === "")
+        return { string_like_type: "null" };
+    var lower = value.toLocaleLowerCase();
+    if (lower === "null")
+        return { string_like_type: "null" };
+    if (lower === "true" || lower === "false")
+        return { string_like_type: "boolean" };
+    // TODO => write correct date-time processor. No allow 30th February
+    if (/^(0[1-9]\d{2}|[1-9]\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/.test(value)) {
+        return { string_like_type: "date" };
+    }
+    if (/^(0[1-9]\d{2}|[1-9]\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$/.test(value)) {
+        return { string_like_type: "datetime" };
+    }
+    if (/^\d+$/.test(value)) {
+        return {
+            string_like_type: "int",
+            precision: value.length,
+            scale: 0,
+        };
+    }
+    if (/^\-?\d+(\.\d+)?$/.test(value)) {
+        return __assign({}, textAsNumber2Type_(value));
+    }
+    // ...   // 'object' | 'array' | TODO?
+    return {
+        string_like_type: "string",
+        size: value.length,
+    };
+}
+
+/**
+ * @typedef {'date' | 'datetime' | 'int' | 'number' | 'string' | 'boolean' | 'object' | 'array' | 'null' | 'unknown'} BasicDataType
+ */
+/**
+ * @typedef {Object} TypeCheckResult
+ * @prop {BasicDataType} type
+ * @prop {BasicDataType} [string_like_type] - type by text if type is text
+ * @prop {number} [size] - The size or length (for string types).
+ * @prop {number} [precision] - The total number of digits (for numeric types).
+ * @prop {number} [scale] - The number of digits after the decimal point (for numeric types).
+ */
+/**
+ * @param {*} value
+ *
+ * @returns {TypeCheckResult}
+ */
+function getBasicType_(value) {
+    if (value === null || value === undefined) {
+        return {
+            type: "null",
+        };
+    }
+    if (value === true || value === false) {
+        return {
+            type: "boolean",
+        };
+    }
+    if (Array.isArray(value)) {
+        return {
+            type: "array",
+        };
+    }
+    if (typeof value === "number") {
+        return getBasicNumberType_(value);
+    }
+    if (value instanceof Date) {
+        return getDateBasicType_(value);
+    }
+    if (value && typeof value === "object" && value.constructor === Object) {
+        return {
+            type: "object",
+        };
+    }
+    if (typeof value === "string") {
+        return __assign({ type: "string" }, getStringLikeType_(value));
+    }
+    return {
+        type: "unknown",
+    };
+}
+
+
+/**
+ * @constructor
+ * @param {*} value
+ */
+function typerStore_(value) {
+    var self = this;
+    self.value = value;
+    /** @type {TypeCheckResult} */
+    self.type = null;
+    /**
+     * @method
+     * @returns {TypeCheckResult}
+     */
+    self.getType = function () {
+        if (self.type)
+            return self.type;
+        self.type = getBasicType_(self.value);
+        return self.type;
+    };
+}
+
+
+/**
+ * @constructor
+ * @param {*} value
+ */
+function Typer_(value) {
+    var self = this;
+    var store = new typerStore_(value);
+    /**
+     * @method
+     * @returns {TypeCheckResult}
+     */
+    self.getType = function () {
+        return store.getType();
+    };
+}
+
 function test_ranger() {
     var ranger = new Ranger_("A1:B25");
     var grid = ranger.grid();
@@ -593,4 +849,6 @@ function test_ranger() {
     else {
         console.log(JSON.stringify(grid, null, 2));
     }
+    var typer = new Typer_("true");
+    console.log(JSON.stringify(typer.getType(), null, 2));
 }

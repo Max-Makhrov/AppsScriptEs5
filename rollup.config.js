@@ -1,6 +1,8 @@
 import typescript from "rollup-plugin-typescript2";
 import alias from "@rollup/plugin-alias";
+import path from "path";
 
+const projectRootDir = path.resolve(__dirname);
 export default {
   input: "./src/main.ts", // your main TypeScript file
   output: {
@@ -10,7 +12,12 @@ export default {
   plugins: [
     typescript(),
     alias({
-      entries: [{ find: "src", replacement: "./src" }],
+      entries: [
+        {
+          find: "@",
+          replacement: path.resolve(projectRootDir, "src"),
+        },
+      ],
     }),
   ],
 };

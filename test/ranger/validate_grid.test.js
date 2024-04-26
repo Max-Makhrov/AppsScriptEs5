@@ -1,8 +1,8 @@
-import { validateRangeGrid_ } from "../src/validators/validate_grid";
-import { getGridA1Measures_ } from "../src/validators/grid_measure";
+import { validateRangeGrid_ } from "@/rangers/validators/validate_grid";
+import { getGridA1Measures_ } from "@/rangers/validators/grid_measure";
 import { expect, test } from "vitest";
-
-/** @typedef {import("../src/grid").RangeGrid} RangeGrid */
+// @ts-ignore
+/** @typedef {import("@/rangers/grid").RangeGrid} RangeGrid */
 
 /** @type {RangeGrid[]} */
 const trueResults = [
