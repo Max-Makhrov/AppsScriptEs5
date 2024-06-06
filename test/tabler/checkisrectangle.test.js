@@ -1,4 +1,4 @@
-import { ValuesChecker_ } from "@/tablers/valueschecker";
+import { checkValuesIsvalidRectangle_ } from "@/tablers/checkisrectangle";
 import { expect, test } from "vitest";
 
 const falseCases = [
@@ -34,9 +34,7 @@ const trueCases = [
 
 falseCases.forEach((value) => {
   test(`Returns false for this wrong inputs`, () => {
-    // @ts-ignore
-    const chekcer = new ValuesChecker_(value);
-    const res = chekcer.check();
+    const res = checkValuesIsvalidRectangle_(value);
     console.log(res.message);
     expect(res.is_valid).toBe(false);
   });
@@ -44,9 +42,7 @@ falseCases.forEach((value) => {
 
 trueCases.forEach((value) => {
   test(`Returns false for this wrong inputs`, () => {
-    // @ts-ignore
-    const chekcer = new ValuesChecker_(value);
-    const res = chekcer.check();
+    const res = checkValuesIsvalidRectangle_(value);
     expect(res.is_valid).toBe(true);
   });
 });

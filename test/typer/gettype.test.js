@@ -17,72 +17,84 @@ const testCases = [
     output: {
       type: "string",
       string_like_type: "null",
+      size: 0,
     },
   },
   {
     input: null,
     output: {
       type: "null",
+      size: 4,
     },
   },
   {
     input: undefined,
     output: {
       type: "null",
+      size: 9,
     },
   },
   {
     input: true,
     output: {
       type: "boolean",
+      size: 4,
     },
   },
   {
     input: false,
     output: {
       type: "boolean",
+      size: 5,
     },
   },
   {
     input: [],
     output: {
       type: "array",
+      size: 2,
     },
   },
   {
     input: [{}],
     output: {
       type: "array",
+      size: 4,
     },
   },
   {
     input: [null],
     output: {
       type: "array",
+      size: 6,
     },
   },
   {
     input: ["1", "2"],
     output: {
       type: "array",
+      size: 9,
     },
   },
   {
     input: [{}, {}, {}],
     output: {
       type: "array",
+      size: 10,
     },
   },
   {
     input: [[], [], []],
     output: {
       type: "array",
+      size: 10,
     },
   },
   {
     input: [[], new Date(), true],
     output: {
       type: "array",
+      size: 36,
     },
   },
   {
@@ -91,6 +103,7 @@ const testCases = [
       type: "int",
       precision: 1,
       scale: 0,
+      size: 1,
     },
   },
   {
@@ -99,6 +112,7 @@ const testCases = [
       type: "int",
       precision: 1,
       scale: 0,
+      size: 1,
     },
   },
   {
@@ -107,6 +121,7 @@ const testCases = [
       type: "int",
       precision: 9,
       scale: 0,
+      size: 9,
     },
   },
   {
@@ -115,6 +130,7 @@ const testCases = [
       type: "int",
       precision: 9,
       scale: 0,
+      size: 10,
     },
   },
   {
@@ -123,6 +139,7 @@ const testCases = [
       type: "int",
       precision: 9,
       scale: 0,
+      size: 10,
     },
   },
   {
@@ -131,6 +148,7 @@ const testCases = [
       type: "number",
       precision: 2,
       scale: 1,
+      size: 3,
     },
   },
   {
@@ -139,6 +157,7 @@ const testCases = [
       type: "number",
       precision: 10,
       scale: 9,
+      size: 11,
     },
   },
   {
@@ -147,6 +166,7 @@ const testCases = [
       type: "number",
       precision: 16,
       scale: 8,
+      size: 17,
     },
   },
   {
@@ -155,48 +175,56 @@ const testCases = [
       type: "number",
       precision: 16,
       scale: 8,
+      size: 18,
     },
   },
   {
     input: new Date("2023-02-10T04:30:00"),
     output: {
       type: "datetime",
+      size: 26,
     },
   },
   {
     input: new Date("2023-02-10T00:00:00"),
     output: {
       type: "date",
+      size: 26,
     },
   },
   {
     input: {},
     output: {
       type: "object",
+      size: 2,
     },
   },
   {
     input: { getTime: "" },
     output: {
       type: "object",
+      size: 14,
     },
   },
   {
     input: { 0: "1" },
     output: {
       type: "object",
+      size: 9,
     },
   },
   {
     input: { 0: null },
     output: {
       type: "object",
+      size: 10,
     },
   },
   {
     input: () => true,
     output: {
       type: "unknown",
+      size: 10,
     },
   },
 
@@ -205,6 +233,7 @@ const testCases = [
     output: {
       type: "string",
       string_like_type: "null",
+      size: 0,
     },
   },
   {
@@ -212,6 +241,7 @@ const testCases = [
     output: {
       type: "string",
       string_like_type: "null",
+      size: 4,
     },
   },
   {
@@ -219,6 +249,7 @@ const testCases = [
     output: {
       type: "string",
       string_like_type: "null",
+      size: 4,
     },
   },
   {
@@ -226,6 +257,7 @@ const testCases = [
     output: {
       type: "string",
       string_like_type: "boolean",
+      size: 4,
     },
   },
   {
@@ -233,6 +265,7 @@ const testCases = [
     output: {
       type: "string",
       string_like_type: "boolean",
+      size: 5,
     },
   },
   {
@@ -240,6 +273,7 @@ const testCases = [
     output: {
       type: "string",
       string_like_type: "boolean",
+      size: 5,
     },
   },
   {
@@ -247,6 +281,7 @@ const testCases = [
     output: {
       type: "string",
       string_like_type: "boolean",
+      size: 4,
     },
   },
   {
@@ -310,6 +345,7 @@ const testCases = [
     output: {
       type: "string",
       string_like_type: "date",
+      size: 10,
     },
   },
   {
@@ -317,6 +353,7 @@ const testCases = [
     output: {
       type: "string",
       string_like_type: "date",
+      size: 10,
     },
   },
   {
@@ -324,6 +361,7 @@ const testCases = [
     output: {
       type: "string",
       string_like_type: "datetime",
+      size: 19,
     },
   },
   {
@@ -331,6 +369,7 @@ const testCases = [
     output: {
       type: "string",
       string_like_type: "datetime",
+      size: 19,
     },
   },
   {
@@ -338,6 +377,7 @@ const testCases = [
     output: {
       type: "string",
       string_like_type: "datetime",
+      size: 19,
     },
   },
   {
@@ -345,6 +385,7 @@ const testCases = [
     output: {
       type: "string",
       string_like_type: "datetime",
+      size: 19,
     },
   },
   {
@@ -378,6 +419,7 @@ const testCases = [
       string_like_type: "int",
       precision: 3,
       scale: 0,
+      size: 3,
     },
   },
   {
@@ -387,6 +429,7 @@ const testCases = [
       string_like_type: "int",
       precision: 3,
       scale: 0,
+      size: 8,
     },
   },
   {
@@ -396,6 +439,7 @@ const testCases = [
       string_like_type: "int",
       precision: 3,
       scale: 0,
+      size: 9,
     },
   },
   {
@@ -405,6 +449,7 @@ const testCases = [
       string_like_type: "number",
       precision: 7,
       scale: 4,
+      size: 9,
     },
   },
   {
@@ -414,6 +459,7 @@ const testCases = [
       string_like_type: "number",
       precision: 19,
       scale: 10,
+      size: 20,
     },
   },
   {

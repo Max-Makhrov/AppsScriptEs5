@@ -1,4 +1,4 @@
-# a1ranger
+# A1ranger
 
 All you wanted to do with "A1:D5" ranges. JS-only code for managing Google Sheets ranges.
 
@@ -18,7 +18,7 @@ function test_ranger() {
 
 Will log this:
 
-```
+```json
 {
   "startColumnIndex": 0,
   "startRowIndex": 0,
@@ -26,6 +26,10 @@ Will log this:
   "endRowIndex": 25
 }
 ```
+
+
+
+# Typer
 
 Use typer:
 
@@ -36,7 +40,7 @@ Use typer:
 
 Will log this:
 
-```
+```json
 {
   "type": "string",
   "string_like_type": "boolean"

@@ -10,7 +10,7 @@ export default {
     format: "es",
   },
   plugins: [
-    typescript(),
+    typescript({ check: false }),
     alias({
       entries: [
         {
