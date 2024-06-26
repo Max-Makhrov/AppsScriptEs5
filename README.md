@@ -6,7 +6,10 @@ Deploy into **compatible ES-5 code**
 
 # Make your copy
 
-#### 1. Clone the Repository
+## Use this tamplate
+Use the green **"Use this template"** button at the top.
+
+## 1. Clone the Repository
 You can clone either the original repository or your fork.
 
 1. **Open your terminal** (like Powershell).
@@ -20,7 +23,7 @@ You can clone either the original repository or your fork.
 
 3. **Clone the repository**:
    ```sh
-   git clone https://github.com/Max-Makhrov/AppsScriptBase.git YourNewProjectName
+   git clone https://github.com/YOU/YourRepo.git YourNewProjectName
    ```
 
 4. **Navigate into the cloned directory**:
@@ -28,7 +31,7 @@ You can clone either the original repository or your fork.
    cd YourNewProjectName
    ```
 
-#### 3. Customize for Your New Project
+## 3. Customize for Your New Project
 
 1. **Open the project in your preferred code editor**.
     
@@ -36,7 +39,7 @@ You can clone either the original repository or your fork.
     code .
     ```
 
-#### 4. Initiate the project
+## 4. Initiate the project
 
 1. **npm init**
 
@@ -80,7 +83,7 @@ You can clone either the original repository or your fork.
    git push
    ```
 
-#### 5. Set Up `Clasp`
+## 5. Set Up `Clasp`
 
 1. Install (`npm install -g @google/clasp`) → login (clasp login)
 2. `clasp create --title "My Project" --type standalone`
@@ -89,7 +92,7 @@ You can clone either the original repository or your fork.
 5. Delete `appsscript.json` from main folder, `\dist` already has it
 6. `clasp push` → `clasp open`
 
-#### 6. Set Up a New Repository for Your New Project
+## 6. Set Up a New Repository for Your New Project
 
 1. (optional) `git remote remove origin`
 
@@ -98,3 +101,8 @@ You can clone either the original repository or your fork.
 
 3. Follow commands in github panel
 
+```
+git add .
+git commit -m "Who cares"
+git push origin master
+```
