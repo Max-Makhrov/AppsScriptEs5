@@ -9,7 +9,7 @@ Deploy into **compatible ES-5 code**
 ## Use this template
 Use the green **"Use this template"** button at the top.
 
-## 1. Clone the Repository
+## Clone the Repository
 You can clone either the original repository or your fork.
 
 1. **Open your terminal** (like Powershell).
