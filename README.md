@@ -91,15 +91,14 @@ You can clone either the original repository or your fork.
 
 ## Set Up a New Repository for Your New Project
 
-1. (optional) `git remote remove origin`
-
-2. **Create a new repository** on GitHub:
-   Go to GitHub, click the '+' icon in the upper right corner, and select 'New repository'..
-
-3. Follow commands in github panel
-
 ```
 git add .
 git commit -m "Who cares"
 git push origin master
+```
+
+get remote URL
+
+```
+git remote get-url origin
 ```
