@@ -70,7 +70,7 @@ You can clone either the original repository or your fork.
 
 ## Set Up `Clasp`
 
-1. Install (`npm install -g @google/clasp`) → login (clasp login)
+1. Install (`npm install -g @google/clasp`) → login (**`clasp login`**)
 2. `clasp create --title "My Project" --type standalone`
 3. Create a clasp project: `clasp create --title "AppScriptES5" --type standalone`
 4. Change root dir in `clasp.json` to `"rootDir":".\\dist"`
