@@ -1,8 +1,8 @@
+Dist folder has a [compatible ES-5 code](https://github.com/Max-Makhrov/a1ranger/blob/master/dist/Code.js), can be used from both back-, and front-end.
+
 # A1ranger
 
 All you wanted to do with "A1:D5" ranges. JS-only code for managing Google Sheets ranges.
-
-Dist folder has a [compatible ES-5 code](https://github.com/Max-Makhrov/a1ranger/blob/master/dist/Code.js), can be used from both back-, and front-end.
 
 ```javascript
 function test_ranger() {

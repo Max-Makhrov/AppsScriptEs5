@@ -4474,6 +4474,40 @@ function getTheFirstSheetSchema_(values, rowIndex, colIndex) {
 }
 
 
+/**
+ * @param {Array[][]} values
+ * @param {SheetFieldSchema[]} fields
+ * @param {Number} rowDataStarts
+ * @param {Number} rowDataEnds
+ * @param {Number[]} skippingRowIndexes
+ *
+ */
+function getTablerDataByCoorfinates_(values, fields, rowDataStarts, rowDataEnds, skippingRowIndexes) {
+    var header = [];
+    fields.forEach(function (field) {
+        header.push(field.database_value);
+    });
+    var resultingData = [header];
+    /**
+     * @param {Number} rowIndex
+     */
+    function _addToData(rowIndex) {
+        if (skippingRowIndexes.indexOf(rowIndex) > -1)
+            return;
+        var newRow = [];
+        fields.forEach(function (field) {
+            var columnIndex = field.column_index;
+            newRow.push(values[rowIndex][columnIndex]);
+        });
+        resultingData.push(newRow);
+    }
+    for (var i = rowDataStarts; i <= rowDataEnds; i++) {
+        _addToData(i);
+    }
+    return resultingData;
+}
+
+
 
 
 /**
@@ -4485,6 +4519,8 @@ function TablerStore_(values) {
     self.values = values;
     /** @type {ValuesCheckResponse|null} */
     self.validation = null;
+    /** @type {SheetTableSchema|null} */
+    self.schema = null;
     /**
      * @method
      * @returns {ValuesCheckResponse}
@@ -4500,11 +4536,32 @@ function TablerStore_(values) {
      * @returns {SheetTableSchema|null}
      */
     self.getSchema = function () {
+        if (self.schema)
+            return self.schema;
         var validation = self.validate();
         if (!validation.is_valid) {
             return null;
         }
-        return getTheFirstSheetSchema_(self.values);
+        var schema = getTheFirstSheetSchema_(self.values);
+        self.schema = schema;
+        return schema;
+    };
+    /**
+     * @method
+     * @param {SheetTableSchema|null} schema
+     */
+    self.setSchema = function (schema) {
+        self.schema = schema;
+    };
+    /**
+     * @method
+     *
+     * @returns  {Array[][]}
+     */
+    self.getData = function () {
+        if (!self.schema)
+            self.getSchema();
+        return getTablerDataByCoorfinates_(self.values, self.schema.fields, self.schema.row_data_starts, self.schema.row_data_ends, self.schema.skipped_row_indexes);
     };
 }
 
@@ -4525,6 +4582,22 @@ function Tabler_(values) {
      */
     self.getSchema = function () {
         return store.getSchema();
+    };
+    /**
+     * @method
+     * @param {SheetTableSchema} schema
+     */
+    self.setSchema = function (schema) {
+        store.setSchema(schema);
+    };
+    /**
+     * @method
+     * @param {SheetTableSchema} [schema]
+     */
+    self.getData = function (schema) {
+        if (schema)
+            self.setSchema(schema);
+        return store.getData();
     };
 }
 

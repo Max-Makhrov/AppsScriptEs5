@@ -20,4 +20,21 @@ export function Tabler_(values) {
   self.getSchema = function () {
     return store.getSchema();
   };
+
+  /**
+   * @method
+   * @param {SheetTableSchema} schema
+   */
+  self.setSchema = function (schema) {
+    store.setSchema(schema);
+  };
+
+  /**
+   * @method
+   * @param {SheetTableSchema} [schema]
+   */
+  self.getData = function (schema) {
+    if (schema) self.setSchema(schema);
+    return store.getData();
+  };
 }
