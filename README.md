@@ -91,16 +91,10 @@ You can clone either the original repository or your fork.
 
 #### 6. Set Up a New Repository for Your New Project
 
-1. **Create a new repository** on GitHub:
-   Go to GitHub, click the '+' icon in the upper right corner, and select 'New repository'. Name your new repository and create it.
+1. (optional) `git remote remove origin`
 
-2. **Change the remote URL** of your local clone to point to your new GitHub repository.
-   ```sh
-   git remote set-url origin https://github.com/YOUR_USERNAME/NEW_PROJECT_NAME.git
-   ```
+2. **Create a new repository** on GitHub:
+   Go to GitHub, click the '+' icon in the upper right corner, and select 'New repository'..
 
-3. **Push your cloned repository to the new repository**:
-   ```sh
-   git push -u origin main
-   ```
-   Replace `main` with the appropriate branch name if it’s different.
+3. Follow commands in github panel
+
