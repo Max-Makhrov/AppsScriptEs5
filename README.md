@@ -6,7 +6,7 @@ Deploy into **compatible ES-5 code**
 
 # Make your copy
 
-## Use this tamplate
+## Use this template
 Use the green **"Use this template"** button at the top.
 
 ## 1. Clone the Repository
