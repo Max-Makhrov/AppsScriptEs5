@@ -66,17 +66,16 @@ You can clone either the original repository or your fork.
 
     Now you can use [ctrl+alt+n] shortcut in terminal and run the installation command!
     
-    ".history/' is for those (like me), using "gistory" add-on, and willing to ignore it.
+    ".history/' is for those (like me), using "history" add-on, and willing to ignore it.
 
 ## Set Up `Clasp`
 
 1. Install (`npm install -g @google/clasp`) → login (**`clasp login`**)
-2. `clasp create --title "My Project" --type standalone`
-3. Create a clasp project: `clasp create --title "AppScriptES5" --type standalone`
-4. Change root dir in `clasp.json` to `"rootDir":".\\dist"`
-5. Delete `appsscript.json` from main folder, `\dist` already has it
-6. `npm run build` should work fine and update `.dist/`
-7. `clasp push` → `clasp open`
+2. Create a clasp project: `clasp create --title "My Project" --type standalone`
+3. Change root dir in `clasp.json` to `"rootDir":".\\dist"`
+4. Delete `appsscript.json` from main folder, `\dist` already has it
+5. `npm run build` should work fine and update `.dist/`
+6. `clasp push` → `clasp open`
 
 ## Optional
     
