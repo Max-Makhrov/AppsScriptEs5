@@ -31,7 +31,7 @@ You can clone either the original repository or your fork.
    cd YourNewProjectName
    ```
 
-## 3. Customize for Your New Project
+## Customize for Your New Project
 
 1. **Open the project in your preferred code editor**.
     
@@ -39,7 +39,7 @@ You can clone either the original repository or your fork.
     code .
     ```
 
-## 4. Initiate the project
+## Initiate the project
 
 1. **npm init**
 
@@ -68,31 +68,28 @@ You can clone either the original repository or your fork.
     
     ".history/' is for those (like me), using "gistory" add-on, and willing to ignore it.
 
-2. Test `build` works
-
-    ```
-    npm run build
-    ```
-    should work fine and update `.dist/`
-
-3. **Update `README.md`**:
-4. **Commit and push your changes**:
-   ```sh
-   git add .
-   git commit -m "Initial customization for new project"
-   git push
-   ```
-
-## 5. Set Up `Clasp`
+## Set Up `Clasp`
 
 1. Install (`npm install -g @google/clasp`) → login (clasp login)
 2. `clasp create --title "My Project" --type standalone`
 3. Create a clasp project: `clasp create --title "AppScriptES5" --type standalone`
 4. Change root dir in `clasp.json` to `"rootDir":".\\dist"`
 5. Delete `appsscript.json` from main folder, `\dist` already has it
-6. `clasp push` → `clasp open`
+6. `npm run build` should work fine and update `.dist/`
+7. `clasp push` → `clasp open`
 
-## 6. Set Up a New Repository for Your New Project
+## Optional
+    
+1. **Update `README.md`**:
+2. **Commit and push your changes**:
+   ```sh
+   git add .
+   git commit -m "Initial customization for new project"
+   git push
+   ```
+
+
+## Set Up a New Repository for Your New Project
 
 1. (optional) `git remote remove origin`
 
