@@ -1,24 +1,25 @@
-import { Ranger_ } from "./ranger";
-import { Typer_ } from "./typer";
-import { Tabler_ } from "./talbler";
+import { getDummySum_ } from "./sample";
 
-export function test_ranger() {
-  const ranger = new Ranger_("A1:B25");
-  const grid = ranger.grid();
-  if (!grid) {
-    console.log(ranger.validation().message);
-  } else {
-    console.log(JSON.stringify(grid, null, 2));
-  }
-
-  const typer = new Typer_("true");
-  console.log(JSON.stringify(typer.getType(), null, 2));
-
-  const t = new Tabler_([["boo"]]);
-  console.log(t.getSchema());
+export function test_code() {
+  console.log(getDummySum_(1, 2));
 }
 
-// Polifils
+//
+//
+//
+//
+//
+//
+// _____      _        __ _ _ _
+// |  __ \    | |      / _(_) | |
+// | |__) |__ | |_   _| |_ _| | |___
+// |  ___/ _ \| | | | |  _| | | / __|
+// | |  | (_) | | |_| | | | | | \__ \
+// |_|   \___/|_|\__, |_| |_|_|_|___/
+//                __/ |
+//               |___/
+//
+//
 if (!Array.prototype.findIndex) {
   Array.prototype.findIndex = function (predicate) {
     if (this === null) {

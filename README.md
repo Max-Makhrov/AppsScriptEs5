@@ -1,243 +1,106 @@
-Dist folder has a [compatible ES-5 code](https://github.com/Max-Makhrov/a1ranger/blob/master/dist/Code.js), can be used from both back-, and front-end.
+Code with `JSDoc` support + `Vitest` + `Typescript`-type checks.
 
-# A1ranger
+Use `Clasp` to store.
 
-All you wanted to do with "A1:D5" ranges. JS-only code for managing Google Sheets ranges.
+Deploy into **compatible ES-5 code**
 
-```javascript
-function test_ranger() {
-  const ranger = new Ranger_("A1:B25");
-  const grid = ranger.grid();
-  if (!grid) {
-    console.log(ranger.validation().message);
-  } else {
-    console.log(JSON.stringify(grid, null, 2));
-  }
-}
-```
+# Make your copy
 
-Will log this:
+#### 1. Clone the Repository
+You can clone either the original repository or your fork.
 
-```json
-{
-  "startColumnIndex": 0,
-  "startRowIndex": 0,
-  "endColumnIndex": 2,
-  "endRowIndex": 25
-}
-```
+1. **Open your terminal** (like Powershell).
+2. Navigate to folder you want with `cd` command
+   
+    Sample code:
 
-# Typer
+     ```
+     cd C:\Users\Asus\Documents\CoolTables
+     ```
 
-Use typer:
+3. **Clone the repository**:
+   ```sh
+   git clone https://github.com/Max-Makhrov/AppsScriptBase.git YourNewProjectName
+   ```
 
-```javascript
-    var typer = new Typer_("true");
-    console.log(JSON.stringify(typer.getType(), null, 2));
-```
+4. **Navigate into the cloned directory**:
+   ```sh
+   cd YourNewProjectName
+   ```
 
-Will log this:
+#### 3. Customize for Your New Project
 
-```json
-{
-  "type": "string",
-  "string_like_type": "boolean"
-}
-```
+1. **Open the project in your preferred code editor**.
+    
+    ```
+    code .
+    ```
 
-# Tabler
+#### 4. Initiate the project
 
-Use tabler:
+1. **npm init**
 
-```
-var ss = SpreadsheetApp.getActive();
-var s = ss.getActiveSheet();
-var r = s.getDataRange();
-var values = r.getValues();
-var tt = new Tabler_(values);
-var res = tt.getSchema();
-console.log(res);
-```
-
-results this:
-
-```
-{
-  "data_coordinates": {
-    "grids": [
-      {
-        "startColumnIndex": 2,
-        "endColumnIndex": 5,
-        "startRowIndex": 8,
-        "endRowIndex": 14
-      },
-      {
-        "startColumnIndex": 2,
-        "endColumnIndex": 5,
-        "startRowIndex": 15,
-        "endRowIndex": 22
-      },
-      {
-        "startColumnIndex": 2,
-        "endColumnIndex": 5,
-        "startRowIndex": 23,
-        "endRowIndex": 35
-      },
-      {
-        "startColumnIndex": 6,
-        "endColumnIndex": 8,
-        "startRowIndex": 8,
-        "endRowIndex": 14
-      },
-      {
-        "startColumnIndex": 6,
-        "endColumnIndex": 8,
-        "startRowIndex": 15,
-        "endRowIndex": 22
-      },
-      {
-        "startColumnIndex": 6,
-        "endColumnIndex": 8,
-        "startRowIndex": 23,
-        "endRowIndex": 35
-      },
-      {
-        "startColumnIndex": 9,
-        "endColumnIndex": 10,
-        "startRowIndex": 8,
-        "endRowIndex": 14
-      },
-      {
-        "startColumnIndex": 9,
-        "endColumnIndex": 10,
-        "startRowIndex": 15,
-        "endRowIndex": 22
-      },
-      {
-        "startColumnIndex": 9,
-        "endColumnIndex": 10,
-        "startRowIndex": 23,
-        "endRowIndex": 35
+    Create shortcut commands for terminal:
+    
+    [Ctrl]+[Shift]+[P] => search
+    
+    Search for 
+    `
+    Open Keyboard Shortcuts (JSON)
+    `
+    
+    Add this command:
+    
+    ```
+    {
+      "key": "ctrl+alt+n",
+      "command": "workbench.action.terminal.sendSequence",
+      "args": {
+        "text": "& {npm init -y; npm install; Add-Content -Path '.gitignore' -Value '.history/'}"
       }
-    ],
-    "ranges_a1": [
-      "C9:E14",
-      "C16:E22",
-      "C24:E35",
-      "G9:H14",
-      "G16:H22",
-      "G24:H35",
-      "J9:J14",
-      "J16:J22",
-      "J24:J35"
-    ]
-  },
-  "header_coordinates": {
-    "grids": [
-      {
-        "startRowIndex": 5,
-        "startColumnIndex": 2,
-        "endRowIndex": 6,
-        "endColumnIndex": 5
-      },
-      {
-        "startRowIndex": 5,
-        "startColumnIndex": 6,
-        "endRowIndex": 6,
-        "endColumnIndex": 8
-      },
-      {
-        "startRowIndex": 5,
-        "startColumnIndex": 9,
-        "endRowIndex": 6,
-        "endColumnIndex": 10
-      }
-    ],
-    "ranges_a1": [
-      "C6:E6",
-      "G6:H6",
-      "J6"
-    ]
-  },
-  "fields": [
-    {
-      "column_index": 2,
-      "database_value": "product_id",
-      "original_value": "product id",
-      "is_generic_header": false,
-      "type": "string",
-      "string_like_type": "int",
-      "size": 2,
-      "precision": 2,
-      "scale": 0
-    },
-    {
-      "column_index": 3,
-      "database_value": "_1product_name",
-      "original_value": "1product name",
-      "is_generic_header": false,
-      "type": "string",
-      "string_like_type": "string",
-      "size": 12,
-      "precision": 0,
-      "scale": 0
-    },
-    {
-      "column_index": 4,
-      "database_value": "units_sold",
-      "original_value": "units sold",
-      "is_generic_header": false,
-      "type": "int",
-      "size": 3,
-      "precision": 3,
-      "scale": 0
-    },
-    {
-      "column_index": 6,
-      "database_value": "revenue",
-      "original_value": "*revenue",
-      "is_generic_header": false,
-      "type": "string",
-      "string_like_type": "string",
-      "size": 7,
-      "precision": 0,
-      "scale": 0
-    },
-    {
-      "column_index": 7,
-      "database_value": "profit",
-      "original_value": "profit",
-      "is_generic_header": false,
-      "type": "string",
-      "string_like_type": "string",
-      "size": 11,
-      "precision": 0,
-      "scale": 0
-    },
-    {
-      "column_index": 9,
-      "database_value": "date_",
-      "original_value": "date",
-      "is_generic_header": false,
-      "type": "string",
-      "string_like_type": "date",
-      "size": 10,
-      "precision": 0,
-      "scale": 0
     }
-  ],
-  "row_data_starts": 8,
-  "row_data_ends": 34,
-  "row_headers": 5,
-  "skipped_column_indexes": [
-    5,
-    8
-  ],
-  "skipped_row_indexes": [
-    14,
-    22
-  ]
-}
-```
+    ```
 
-...
+    Now you can use [ctrl+alt+n] shortcut in terminal and run the installation command!
+    
+    ".history/' is for those (like me), using "gistory" add-on, and willing to ignore it.
+
+2. Test `build` works
+
+    ```
+    npm run build
+    ```
+    should work fine and update `.dist/`
+
+3. **Update `README.md`**:
+4. **Commit and push your changes**:
+   ```sh
+   git add .
+   git commit -m "Initial customization for new project"
+   git push
+   ```
+
+#### 5. Set Up `Clasp`
+
+1. Install (`npm install -g @google/clasp`) → login (clasp login)
+2. `clasp create --title "My Project" --type standalone`
+3. Create a clasp project: `clasp create --title "AppScriptES5" --type standalone`
+4. Change root dir in `clasp.json` to `"rootDir":".\\dist"`
+5. Delete `appsscript.json` from main folder, `\dist` already has it
+6. `clasp push` → `clasp open`
+
+#### 6. Set Up a New Repository for Your New Project
+
+1. **Create a new repository** on GitHub:
+   Go to GitHub, click the '+' icon in the upper right corner, and select 'New repository'. Name your new repository and create it.
+
+2. **Change the remote URL** of your local clone to point to your new GitHub repository.
+   ```sh
+   git remote set-url origin https://github.com/YOUR_USERNAME/NEW_PROJECT_NAME.git
+   ```
+
+3. **Push your cloned repository to the new repository**:
+   ```sh
+   git push -u origin main
+   ```
+   Replace `main` with the appropriate branch name if it’s different.

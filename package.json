@@ -1,7 +1,7 @@
 {
   "name": "ranger",
   "version": "1.0.0",
-  "description": "",
+  "description": "Dist folder has a [compatible ES-5 code](https://github.com/Max-Makhrov/a1ranger/blob/master/dist/Code.js), can be used from both back-, and front-end.",
   "type": "module",
   "scripts": {
     "build": "npm run renameToTs && rollup --config --bundleConfigAsCjs && powershell -Command \"(Get-Content -Path .\\\\Dist\\\\Code.js | Select-Object -SkipLast 2) -replace '/\\*\\* @typedef {import\\(\".+\"\\)\\..+ \\*/' | Out-File -FilePath .\\\\Dist\\\\Code.js -Encoding utf8\" && clasp push && npm run renameToJs",
@@ -18,5 +18,9 @@
     "rollup-plugin-typescript2": "^0.36.0",
     "typescript": "^5.4.5",
     "vitest": "^1.4.0"
+  },
+  "main": "rollup.config.js",
+  "directories": {
+    "test": "test"
   }
 }

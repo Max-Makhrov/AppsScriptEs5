@@ -8,4 +8,8 @@ tcs_tmp/
 node_modules/
 
 # To make Git simpler
-package-lock.json
+package-lock.json.history/
+.history/
+
+
+clasp.json
